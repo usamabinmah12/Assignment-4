@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+</head>
+
+<body class="min-s-screen max-w-md bg-base-100 mx-auto ">
+    <header>
+        <h2 class="font-bold">Job Application Tracker</h2>
+        <div class="w-11/12 card pt-[20px] grid grid-cols-3 gap-[4px]">
+            <div class="border-1 border-solid  grid justify-center text-center">
+                <h5>Total</h2>
+                    <p id="tot" >8</p>
+            </div>
+            <div class="border-1 border-solid  grid justify-center text-center">
+                <h5>Interview</h2>
+                    <p id="int-cnt">0</p>
+            </div>
+            <div class="border-1 border-solid  grid justify-center text-center">
+                <h5>Rejected</h2>
+                    <p id="rejecti">0</p>
+            </div>
+        </div>
+
+    </header>
+    <section class="pt-[30px]">
+        <div class=" pt-3 job flex justify-between">
+            <h2>Available Jobs</h2>
+            <p id="curr-job"> 8 Jobs</p>
+        </div>
+        <div class=" pt-3 flex gap-[6px]">
+            <div class="button-1">
+                <button onclick="showOnly('all-jobs' , 'tot') ; jobs()" id="all-btn" class="btn btn-soft btn-primary">All</button>
+            </div>
+            <div class="button-2">
+                <button id="inter" onclick="showOnly('interview','int-cnt') ; jobsAvailable() " class="btn btn-soft btn-primary">Interview</button>
+            </div>
+            <div  class="button-3">
+                <button onclick="showOnly('reject','rejecti') ; jobsRejected()" class="btn btn-soft btn-primary">Rejected</button>
+            </div>
+        </div>
+    </section>
+    <section id="all-jobs"  class="pt-[30px]">
+        <div id="job-1" class="bg-cyan-50">
+            <h3 class="font-bold pt-4">
+                Mobile First Corp
+
+            </h3>
+            <p class="font-light text-[#64748b] pt-4">
+                React Native Devoloper <br>
+                Remote • Full-time • $130,000 - $175,000
+            </p>
+            <button id="applied-1" class=" btn  pt-4">
+                NOT APPLLIED
+            </button>
+            <p class="pt-4">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide</p>
+            <div class="pt-4">
+                <button onclick="interview('applied-1') ; interViewCnt() ; addEvent('job-1')" id="inter-btn1" class="btn">Interview</button>
+                <button onclick="rejectCnt() ; rejected('applied-1') ; addReject('job-1')" id="" class="btn">Rejected</button>
+            </div>
+        </div>
+        <div id="job-2" class="bg-cyan-50 my-7">
+            <h3 class="font-bold pt-4">
+                Mobile Second
+
+            </h3>
+            <p class="font-light text-[#64748b] pt-4">
+                React Native Devoloper <br>
+                Remote • Full-time • $130,000 - $175,000
+            </p>
+            <button id="applied-2" class=" btn  pt-4">
+                NOT APPLLIED
+            </button>
+            <p class="pt-4">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide</p>
+            <div class="pt-4">
+                <button onclick="interview('applied-2') ; interViewCnt() ; addEvent('job-2')" class="btn">Interview</button>
+                <button onclick="rejectCnt()  ; rejected('applied-2')  ; addReject('job-2')" class="btn">Rejected</button>
+            </div>
+            
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+    <div id="interview-btn"  class="flex flex-col items-center justify-center text-center hidden pt-5">
+            <img src="./images/jobs.png" alt="">
+            <h3 class="mt-4 text-xl font-semibold">No jobs Available</h3>
+            <p class="mt-2 text-gray-500">Check back soon for new Job opportunities</p>
+        </div>
+    <section id="interview" class="hidden">
+        
+    </section>
+    <section id="reject" class="hidden">
+        <!-- <div id="reject-btn"  class="flex flex-col items-center justify-center text-center hidden pt-5">
+            <img src="./images/jobs.png" alt="">
+            <h3 class="mt-4 text-xl font-semibold">No jobs Available</h3>
+            <p class="mt-2 text-gray-500">Check back soon for new Job opportunities</p>
+        </div> -->
+    </section>
+    <script src="./script/interview.js"></script>
+    <script src="./script/machine.js"></script>
+    <section></section>
+
+</body>
+
+</html>
