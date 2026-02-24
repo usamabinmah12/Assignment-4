@@ -40,7 +40,7 @@ function showOnly(section_id , cnt_id) {
     }
     else {
         const curr = Number(document.getElementById(cnt_id).innerText);
-        // console.log(curr);
+       
         const main = document.getElementById('all-jobs');
         main.classList.add("hidden");
         if(section_id == 'interview') {
@@ -104,15 +104,12 @@ const reList = [];
 function addEvent(id) {
 
     if (!intList.includes(id)) {
-
-        const jobDiv = document.getElementById(id);
+         const jobDiv = document.getElementById(id);
         if (!jobDiv) return;
 
         const clone = jobDiv.cloneNode(true);
 
-        // 🔥 remove id to avoid duplicate id problem
         clone.removeAttribute("id");
-
         const interviewSection = document.getElementById('interview');
         interviewSection.appendChild(clone);
         interviewSection.classList.remove("hidden");
@@ -127,10 +124,8 @@ function addReject(id) {
 
         const jobDiv = document.getElementById(id);
         if (!jobDiv) return;
-
         const clone = jobDiv.cloneNode(true);
         clone.removeAttribute("id");
-
         const rejectSection = document.getElementById('reject');
         rejectSection.appendChild(clone);
         rejectSection.classList.remove("hidden");
@@ -143,11 +138,11 @@ function remove(id) {
     div.parentNode.removeChild(div);
 }
 function jobReduce(id) {
-    const el = document.getElementById("curr-job"); // element
-    const text = el.innerText;                       // text
-    let number = Number(text.split(" ")[0]);         // number extract
-    number = number - 1;                             // decrement
-    el.innerText = number + " Jobs";                 // update element
+    const el = document.getElementById("curr-job"); 
+    const text = el.innerText;                       
+    let number = Number(text.split(" ")[0]);        
+    number = number - 1;                             
+    el.innerText = number + " Jobs";                 
     const eli = document.getElementById('tot');
     eli.innerText = number;
 }
