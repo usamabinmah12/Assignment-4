@@ -8,13 +8,16 @@ function rejected(id) {
     apl1.innerText = "Rejected";
 
 }
-function interViewCnt() {
-    const apl1 = document.getElementById('int-cnt');
-    let cnt = Number(apl1.innerText); 
-    cnt = cnt + 1;
-    console.log(cnt);
-    if(cnt > 8) cnt = 8;
-    apl1.innerText = cnt;
+function interViewCnt(id) {
+    if (!intList.includes(id)) {
+        const apl1 = document.getElementById('int-cnt');
+        let cnt = Number(apl1.innerText); 
+        cnt = cnt + 1;
+        console.log(cnt);
+        if(cnt > 8) cnt = 8;
+        apl1.innerText = cnt;
+    }
+    
 }
 function rejectCnt() {
     const apl1 = document.getElementById('rejecti');
@@ -37,7 +40,7 @@ function showOnly(section_id , cnt_id) {
     }
     else {
         const curr = Number(document.getElementById(cnt_id).innerText);
-        console.log(curr);
+        // console.log(curr);
         const main = document.getElementById('all-jobs');
         main.classList.add("hidden");
         if(section_id == 'interview') {
@@ -75,39 +78,76 @@ function jobsAvailable() {
     const curr = document.getElementById('int-cnt');
     const cnt_job = curr.innerText;
     const curri = document.getElementById('curr-job');
-    curri.innerText = cnt_job + " of " + 8 + " Jobs";
+    const eli = document.getElementById('tot');
+    const v = eli.innerText;
+    curri.innerText = cnt_job + " of " + v + " Jobs";
 
 }
 function jobsRejected() {
     const curr = document.getElementById('rejecti');
     const cnt_job = curr.innerText;
+    const eli = document.getElementById('tot');
+    const v = eli.innerText;
     const curri = document.getElementById('curr-job');
-    curri.innerText = cnt_job + " of " + 8 + " Jobs";
+    curri.innerText = cnt_job + " of " + v + " Jobs";
 
 }
 function jobs() {
     const curri = document.getElementById('curr-job');
-    curri.innerText =  8 + " Jobs";
+    const eli = document.getElementById('tot');
+    const v = eli.innerText;
+    curri.innerText =  v + " Jobs";
 }
-function addEvent(id) {
-    
-    const jobDiv = document.getElementById(id);
-    const clone = jobDiv.cloneNode(true); // deep clone including child nodes
-    const container = document.getElementById('interview');
-    container.appendChild(clone); // show the clone in interview section
-    container.classList.remove("hidden"); // show the section
-    // const inteview_btni = document.getElementById('interview-btn');
-    // inteview_btni.classList.add("hidden");
-    
-   
+const intList = [];
+const reList = [];
 
+function addEvent(id) {
+
+    if (!intList.includes(id)) {
+
+        const jobDiv = document.getElementById(id);
+        if (!jobDiv) return;
+
+        const clone = jobDiv.cloneNode(true);
+
+        // 🔥 remove id to avoid duplicate id problem
+        clone.removeAttribute("id");
+
+        const interviewSection = document.getElementById('interview');
+        interviewSection.appendChild(clone);
+        interviewSection.classList.remove("hidden");
+
+        intList.push(id);
+    }
 }
+
 function addReject(id) {
-    const jobDiv = document.getElementById(id);
-    const clone = jobDiv.cloneNode(true); // deep clone including child nodes
-    const container = document.getElementById('reject');
-    container.appendChild(clone); // show the clone in interview section
-    container.classList.remove("hidden");
-    // const inteview_btni = document.getElementById('reject-btn');
-    // inteview_btni.classList.add("hidden");
+
+    if (!reList.includes(id)) {
+
+        const jobDiv = document.getElementById(id);
+        if (!jobDiv) return;
+
+        const clone = jobDiv.cloneNode(true);
+        clone.removeAttribute("id");
+
+        const rejectSection = document.getElementById('reject');
+        rejectSection.appendChild(clone);
+        rejectSection.classList.remove("hidden");
+
+        reList.push(id);
+    }
+}
+function remove(id) {
+    const div = document.getElementById(id);
+    div.parentNode.removeChild(div);
+}
+function jobReduce(id) {
+    const el = document.getElementById("curr-job"); // element
+    const text = el.innerText;                       // text
+    let number = Number(text.split(" ")[0]);         // number extract
+    number = number - 1;                             // decrement
+    el.innerText = number + " Jobs";                 // update element
+    const eli = document.getElementById('tot');
+    eli.innerText = number;
 }
